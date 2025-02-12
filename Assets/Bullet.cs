@@ -11,6 +11,11 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        
+        Invoke("Die", 3f);
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 }

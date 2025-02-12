@@ -4,7 +4,7 @@ using UnityEditor;
 [CustomEditor(typeof(GameWeapon))]
 class WeaponInitializeEditor : Editor
 {
-    public override void OnInspectorGUI()
+    /*public override void OnInspectorGUI()
     {
         GameWeapon weapon = (GameWeapon)target;
         DrawDefaultInspector();
@@ -12,5 +12,5 @@ class WeaponInitializeEditor : Editor
         {
             weapon.InitializeWeapon();
         }
-    }
+    }*/
 }

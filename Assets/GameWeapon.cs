@@ -6,13 +6,18 @@ public class GameWeapon : MonoBehaviour
     public float aimAngle;
     bool canFire = true;
     public bool reloading;
-    int mag;
+    public int mag;
 
     public GameObject bulletPrefab;
 
     void Start()
     {
         canFire = true;
+        InitializeWeapon();
+    }
+    
+    void OnValidate()
+    {
         InitializeWeapon();
     }
 
