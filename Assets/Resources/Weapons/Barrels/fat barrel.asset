@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0f631829b84ba84eb4ce9e551fbe88f, type: 3}
-  m_Name: fat barrel
+  m_Name: Fat Barrel
   m_EditorClassIdentifier: 
   name: 
   menuSprite: {fileID: 0}
