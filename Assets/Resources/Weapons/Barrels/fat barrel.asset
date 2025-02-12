@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f631829b84ba84eb4ce9e551fbe88f, type: 3}
+  m_Name: fat barrel
+  m_EditorClassIdentifier: 
+  name: 
+  menuSprite: {fileID: 0}
+  rarity: 0
+  damageMult: 0.7
+  fireRateMult: 1
+  accuracyMult: 0.7
+  magMult: 0.7
+  reloadMult: 1
+  bulletSpeedMult: 1
+  bulletCountMult: 1.5
+  sprite: {fileID: 0}
