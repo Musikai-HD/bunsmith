@@ -917,7 +917,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 3bc3c36baa26aee43b07aecddc43aba7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -937,8 +937,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 5070333123558391652, guid: caa4af00988a6174b83aacd2b298bb48, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1009,6 +1009,11 @@ MonoBehaviour:
   recoilRotMult: 25
   recoilSpeed: 50
   recoilReturnSpeed: 12
+  aimSpeed: 70
+  fire: {fileID: 8300000, guid: 269ce444c44ac854fa1284793ced3c50, type: 3}
+  bigFire: {fileID: 8300000, guid: e5e82178939811146b005633a1dac3c5, type: 3}
+  reload: {fileID: 8300000, guid: d669643a5b0384442a4e42ea3c387828, type: 3}
+  finishReload: {fileID: 8300000, guid: a38e65275a308bb42954ccd47e01fe7d, type: 3}
 --- !u!1 &1788227084
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,6 +1286,7 @@ MonoBehaviour:
   hittableLayers:
     serializedVersion: 2
     m_Bits: 0
+  spr: {fileID: 2025069584}
   maxSpeed: 6
   curSpeed: 0
   curInput: {x: 0, y: 0}
@@ -1594,6 +1600,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c114f8c0a8c8d174f9255545f79c21db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxSource: {fileID: 1861319382}
+  musicSource: {fileID: 0}
 --- !u!1 &1916215960
 GameObject:
   m_ObjectHideFlags: 0
@@ -1879,7 +1887,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -52,7 +52,7 @@ public class RoomManager : MonoBehaviour
 
         for (int i = 0; i < 50; i++)
         {
-            GenerateRoom();
+            //GenerateRoom();
         }
     }
 
@@ -142,14 +142,15 @@ public class RoomManager : MonoBehaviour
         currentRooms.Add(newRoom);
         //add new room entrances and remove used ones
         RoomEntrance[] _roomEntrances = GetContainer(newRoom).entrances;
+        Debug.Log(_roomEntrances);
         for (int i = 0; i < _roomEntrances.Length; i++)
         {
             if (GetEntrancesAtPosition(_roomEntrances[i].entrancePos.position).Count == 0)
             {
                 roomEntrances.Add(_roomEntrances[i]);
             }
-            //CleanEntrancesAtPosition(_roomEntrances[i].entrancePos.position);
         }
+        //remove unnecessary entrances if not needed
         if (roomEntrances.Contains(GetEntranceByDirection(GetContainer(newRoom), selectedDirection)))
         {
             roomEntrances.Remove(GetEntranceByDirection(GetContainer(newRoom), selectedDirection));
@@ -214,6 +215,15 @@ public class RoomManager : MonoBehaviour
             }
         }
         return tMin;
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(1f, 0f, 0f, 0.2f);
+        for (int i = 0; i < roomEntrances.Count; i++)
+        {
+            Gizmos.DrawSphere(roomEntrances[i].entrancePos.position, 1f);
+        }
     }
 }
 

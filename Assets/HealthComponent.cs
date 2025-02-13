@@ -27,4 +27,5 @@ public class HealthComponent
             health -= damage;
         }
     }
+
 }

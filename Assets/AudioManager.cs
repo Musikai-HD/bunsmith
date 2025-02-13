@@ -3,7 +3,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-    AudioSource sfxSource;
+    [SerializeField] AudioSource sfxSource, musicSource;
     void Awake()
     {
         //singleton declaration

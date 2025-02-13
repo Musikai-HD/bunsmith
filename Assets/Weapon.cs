@@ -20,6 +20,9 @@ public class Weapon
     public float Reload {get; private set;}
     public float BulletSpeed {get; private set;}
     public int BulletCount {get; private set;}
+    public Status.StatusType BulletStatus {get; private set;}
+    public float StatusTime {get; private set;}
+    public float StatusDamage {get; private set;}
 
     public void InitializeWeapon()
     {
@@ -68,6 +71,8 @@ public class Weapon
         (barrel == null ? 1f : barrel.bulletCountMult) * 
         (attachment == null ? 1f : attachment.bulletCountMult) * 
         (bullets == null ? 1f : bullets.bulletCountMult));
+
+        BulletStatus = bullets == null ? Status.StatusType.None : bullets.status;
     }
 
 }
