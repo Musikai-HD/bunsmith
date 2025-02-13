@@ -24,6 +24,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Reload",
+                    "type": "PassThrough",
+                    "id": "c43d0dce-2a1c-4809-8ff3-baf0439f189e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "DEBUG Spawn Enemy",
                     "type": "PassThrough",
                     "id": "b3ba112b-4471-4a38-97c0-7bc07812360d",
@@ -185,6 +194,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "DEBUG Spawn Enemy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fcb2e6c4-df3f-4113-a28b-94bc6c175d22",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

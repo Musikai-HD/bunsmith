@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class GameWeapon : MonoBehaviour
 {
@@ -9,6 +11,14 @@ public class GameWeapon : MonoBehaviour
     public int mag;
 
     public GameObject bulletPrefab;
+    Transform spriteParent;
+    public float recoil;
+    public float recoilMult, recoilRotMult, recoilSpeed, recoilReturnSpeed;
+
+    void Awake()
+    {
+        spriteParent = transform.GetChild(0);
+    }
 
     void Start()
     {
@@ -30,7 +40,9 @@ public class GameWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.localRotation = Quaternion.Euler(0f, 0f, aimAngle);
+        transform.localRotation = Quaternion.Euler(0f, 0f, aimAngle + (EulerSign(aimAngle) * recoil * recoilRotMult));
+        spriteParent.localPosition = Vector3.Lerp(spriteParent.localPosition, new Vector3(1.15f - recoil, 0f, 0f), Time.deltaTime * recoilSpeed);
+        recoil = Mathf.Lerp(recoil, 0f, recoilReturnSpeed * Time.deltaTime);
     }
 
     public void TryFire()
@@ -55,10 +67,11 @@ public class GameWeapon : MonoBehaviour
     {
         for (int i = 0; i < weapon.BulletCount; i++)
         {
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            GameObject bullet = Instantiate(bulletPrefab, spriteParent.position, Quaternion.identity);
             bullet.GetComponent<Rigidbody2D>().linearVelocity = (Vector2)(Quaternion.Euler(0, 0, aimAngle + Random.Range(-weapon.Accuracy, weapon.Accuracy)) * Vector2.right) * weapon.BulletSpeed;
             bullet.GetComponent<Hitbox>().damage = weapon.Damage;
         }
+        recoil = weapon.Damage * recoilMult * weapon.BulletCount;
     }
 
     void SetCanFire()
@@ -68,14 +81,24 @@ public class GameWeapon : MonoBehaviour
 
     public void Reload()
     {
+        CancelInvoke("FinishReload");
         canFire = false;
+        mag = 0;
         reloading = true;
         Invoke("FinishReload", weapon.Reload);
     }
     
     void FinishReload()
     {
+        reloading = false;
         SetCanFire();
         mag = weapon.Mag;
+    }
+
+    int EulerSign(float eulerAngle)
+    {
+        if (eulerAngle >= -90f && eulerAngle < 90f) return 1;
+        if (eulerAngle >= 90f || eulerAngle < -90f) return -1;
+        return 0;
     }
 }

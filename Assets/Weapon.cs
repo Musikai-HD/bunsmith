@@ -3,8 +3,6 @@ using UnityEngine;
 [System.Serializable]
 public class Weapon
 {
-    public bool validated;
-
     public WeaponFrame frame;
     public WeaponStock stock;
     public WeaponBarrel barrel;
@@ -22,11 +20,6 @@ public class Weapon
     public float Reload {get; private set;}
     public float BulletSpeed {get; private set;}
     public int BulletCount {get; private set;}
-
-    void Start()
-    {
-        
-    }
 
     public void InitializeWeapon()
     {

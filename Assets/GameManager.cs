@@ -8,8 +8,20 @@ public class GameManager : MonoBehaviour
     public GameWeapon gw;
     public TextMeshProUGUI healthText, ammoText, gunText;
 
+    public static GameManager instance;
+
     void Awake()
     {
+        //singleton declaration
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
+
         pc = GameObject.Find("Player").GetComponent<PlayerController>();
         gw = pc.weapon;
         debugger = GameObject.Find("Debugger").GetComponent<Debugger>();

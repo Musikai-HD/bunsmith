@@ -12,29 +12,9 @@ public class PlayerController : Damageable
 
     public GameWeapon weapon;
 
-
-    void Awake()
+    protected override void Update()
     {
-        
-    }
-
-    void OnEnable()
-    {
-        
-    }
-
-    void OnDisable()
-    {
-        
-    }
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
+        base.Update();
         rb.linearVelocity = curInput * maxSpeed;
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 rotation = mousePos - transform.position;
@@ -61,6 +41,7 @@ public class PlayerController : Damageable
     {
         if (context.ReadValueAsButton())
         {
+            Debug.Log("reload");
             if (weapon.reloading == false)
             {
                 weapon.Reload();
