@@ -80,6 +80,7 @@ public class GameWeapon : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, spriteParent.position, Quaternion.identity);
             bullet.GetComponent<Rigidbody2D>().linearVelocity = (Vector2)(Quaternion.Euler(0, 0, aimAngle + Random.Range(-weapon.Accuracy, weapon.Accuracy)) * Vector2.right) * weapon.BulletSpeed;
             bullet.GetComponent<Bullet>().hb.hitInfo = new HitInfo(weapon.Damage, weapon.BulletStatus, weapon.StatusDamage, weapon.StatusTime);
+            bullet.GetComponent<Bullet>().lifetime = weapon.frame.bulletLiftetime;
         }
         recoil = weapon.Damage * recoilMult * weapon.BulletCount;
         AudioManager.instance.Play(bigFire);

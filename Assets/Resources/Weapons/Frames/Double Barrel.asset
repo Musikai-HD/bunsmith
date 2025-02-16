@@ -22,3 +22,4 @@ MonoBehaviour:
   bulletCount: 7
   reload: 0.85
   bulletSpeed: 12
+  bulletLiftetime: 0.5

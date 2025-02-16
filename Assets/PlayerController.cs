@@ -12,6 +12,8 @@ public class PlayerController : Damageable
 
     public GameWeapon weapon;
 
+    public PlayerInput input;
+
     protected override void Update()
     {
         base.Update();

@@ -11,4 +11,5 @@ public class WeaponFrame : ItemWrapper
     public float bulletCount = 1f;
     public float reload = 1f;
     public float bulletSpeed = 10f;
+    public float bulletLiftetime = 3f;
 }

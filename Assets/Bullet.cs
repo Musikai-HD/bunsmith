@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     public ParticleSystem mainParticles, hitParticles;
     public SpriteRenderer sr;
     public Hitbox hb;
+    public float lifetime;
 
     void Awake()
     {
@@ -15,7 +16,7 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        Invoke("Die", 3f);
+        Invoke("Die", lifetime);
     }
 
     void Die()

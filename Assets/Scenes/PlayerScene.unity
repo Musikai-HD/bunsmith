@@ -152,6 +152,7 @@ Transform:
   - {fileID: 1861319383}
   - {fileID: 1249843607}
   - {fileID: 2006323357}
+  - {fileID: 288283629}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &288283627
@@ -193,12 +194,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288283627}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 53852016}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &683817638
 GameObject:
@@ -1002,7 +1003,7 @@ MonoBehaviour:
     bullets: {fileID: 0}
   aimAngle: 0
   reloading: 0
-  mag: 8
+  mag: 10
   bulletPrefab: {fileID: 3512304339176004508, guid: 6fba5b0ae425d3445898ad4b47845dde, type: 3}
   recoil: 0
   recoilMult: 0.065
@@ -1283,9 +1284,6 @@ MonoBehaviour:
     shield: 0
     invincible: 0
   hitbox: {fileID: 0}
-  hittableLayers:
-    serializedVersion: 2
-    m_Bits: 0
   spr: {fileID: 2025069584}
   maxSpeed: 6
   curSpeed: 0
@@ -1293,6 +1291,7 @@ MonoBehaviour:
   fireHeld: 0
   rb: {fileID: 1816166166}
   weapon: {fileID: 1729645093}
+  input: {fileID: 1816166168}
 --- !u!114 &1816166168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1965,5 +1964,4 @@ SceneRoots:
   - {fileID: 1816166164}
   - {fileID: 1916215964}
   - {fileID: 1916215963}
-  - {fileID: 288283629}
   - {fileID: 4148020468758410172}
