@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b229b91f77762b04782333fdc5eea536, type: 3}
-  m_Name: Pistol
+  m_Name: Double Barrel
   m_EditorClassIdentifier: 
   menuSprite: {fileID: 0}
   rarity: 0
-  sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  damage: 10
-  fireRate: 0.3333333
-  accuracy: 1
-  mag: 10
-  bulletCount: 1
-  reload: 1
+  sprite: {fileID: 0}
+  damage: 4
+  fireRate: 0.15
+  accuracy: 22
+  mag: 2
+  bulletCount: 7
+  reload: 0.85
   bulletSpeed: 12

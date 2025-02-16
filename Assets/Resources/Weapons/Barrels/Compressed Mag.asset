@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6904c131f2225f246bb20dda8282bfa2, type: 3}
-  m_Name: Tight Stock
+  m_Script: {fileID: 11500000, guid: c0f631829b84ba84eb4ce9e551fbe88f, type: 3}
+  m_Name: Compressed Mag
   m_EditorClassIdentifier: 
   menuSprite: {fileID: 0}
   rarity: 0
-  damageMult: 1
-  fireRateMult: 0.7
-  accuracyMult: 2
-  magMult: 1
+  damageMult: 0.7
+  fireRateMult: 1
+  accuracyMult: 0.8
+  magMult: 0.5
   reloadMult: 1
   bulletSpeedMult: 1
-  bulletCountMult: 1
+  bulletCountMult: 2
   sprite: {fileID: 0}

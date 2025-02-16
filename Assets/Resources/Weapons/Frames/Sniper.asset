@@ -9,17 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0f631829b84ba84eb4ce9e551fbe88f, type: 3}
-  m_Name: Skinny Barrel
+  m_Script: {fileID: 11500000, guid: b229b91f77762b04782333fdc5eea536, type: 3}
+  m_Name: Sniper
   m_EditorClassIdentifier: 
-  name: 
   menuSprite: {fileID: 0}
   rarity: 0
-  damageMult: 1.5
-  fireRateMult: 1
-  accuracyMult: 2
-  magMult: 1.4
-  reloadMult: 1
-  bulletSpeedMult: 1
-  bulletCountMult: 0.7
   sprite: {fileID: 0}
+  damage: 30
+  fireRate: 0.6666667
+  accuracy: 0
+  mag: 5
+  bulletCount: 1
+  reload: 1.5
+  bulletSpeed: 20

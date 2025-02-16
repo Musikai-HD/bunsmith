@@ -9,17 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b229b91f77762b04782333fdc5eea536, type: 3}
-  m_Name: Rifle
+  m_Script: {fileID: 11500000, guid: 6904c131f2225f246bb20dda8282bfa2, type: 3}
+  m_Name: Hard Stock
   m_EditorClassIdentifier: 
-  name: 
   menuSprite: {fileID: 0}
   rarity: 0
+  damageMult: 1.33
+  fireRateMult: 0.8
+  accuracyMult: 1.1
+  magMult: 1
+  reloadMult: 0.88
+  bulletSpeedMult: 1.1
+  bulletCountMult: 1
   sprite: {fileID: 0}
-  damage: 3
-  fireRate: 1
-  accuracy: 17
-  mag: 6
-  bulletCount: 5
-  reload: 2.5
-  bulletSpeed: 10

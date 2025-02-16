@@ -60,7 +60,7 @@ public class Weapon
         (attachment == null ? 1f : attachment.bulletSpeedMult) * 
         (bullets == null ? 1f : bullets.bulletSpeedMult);
 
-        Mag = (int)(frame.mag * 
+        Mag = Mathf.CeilToInt(frame.mag * 
         (stock == null ? 1f : stock.magMult) * 
         (barrel == null ? 1f : barrel.magMult) * 
         (attachment == null ? 1f : attachment.magMult) * 

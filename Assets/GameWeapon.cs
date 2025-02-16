@@ -68,10 +68,7 @@ public class GameWeapon : MonoBehaviour
                 canFire = false;
                 mag--;
                 Invoke("SetCanFire", weapon.FireRate);
-            }
-            else
-            {
-                Reload();
+                if (mag <= 0) Reload();
             }
         }
     }
