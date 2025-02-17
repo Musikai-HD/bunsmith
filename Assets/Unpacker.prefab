@@ -1612,7 +1612,7 @@ MonoBehaviour:
   spr: {fileID: 1865434180181003110}
   corpse: {fileID: 8378927927031730696, guid: 64f2ae8ba2ac2f0429170f5053e43620, type: 3}
   damageIndicator: {fileID: 5244270117439880762, guid: 6ddf4b4eb03cf2049bc3c85871073f12, type: 3}
-  maxSpeed: 5
+  maxSpeed: 4
   curSpeed: 0
   curInput: {x: 0, y: 0}
   fireHeld: 0
