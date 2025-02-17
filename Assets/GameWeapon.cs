@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using static Extensions;
 
 public class GameWeapon : MonoBehaviour
 {
@@ -18,10 +19,13 @@ public class GameWeapon : MonoBehaviour
 
     public AudioClip fire, bigFire, reload, finishReload;
 
+    float gunDist;
+
     void Awake()
     {
         spriteParent = transform.GetChild(0);
         spr = spriteParent.GetComponent<SpriteRenderer>();
+        gunDist = spriteParent.localPosition.x;
     }
 
     void Start()
@@ -54,7 +58,7 @@ public class GameWeapon : MonoBehaviour
             transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0f, 0f, aimAngle + (EulerSign(aimAngle) * recoil * recoilRotMult)), Time.deltaTime * aimSpeed);
         }
         spriteParent.GetComponent<SpriteRenderer>();
-        spriteParent.localPosition = Vector3.Lerp(spriteParent.localPosition, new Vector3(1.15f - recoil, 0f, 0f), Time.deltaTime * recoilSpeed);
+        spriteParent.localPosition = Vector3.Lerp(spriteParent.localPosition, new Vector3(gunDist - recoil, 0f, 0f), Time.deltaTime * recoilSpeed);
         recoil = Mathf.Lerp(recoil, 0f, recoilReturnSpeed * Time.deltaTime);
     }
 
@@ -107,12 +111,5 @@ public class GameWeapon : MonoBehaviour
         SetCanFire();
         mag = weapon.Mag;
         AudioManager.instance.Play(finishReload);
-    }
-
-    int EulerSign(float eulerAngle)
-    {
-        if (eulerAngle >= -90f && eulerAngle < 90f) return 1;
-        if (eulerAngle >= 90f || eulerAngle < -90f) return -1;
-        return 0;
     }
 }

@@ -4,9 +4,10 @@ public abstract class Damageable : MonoBehaviour
 {
     public HealthComponent hc;
     public Collider2D hitbox;
-    
+    public float squashSpeed = 10f;
     public SpriteRenderer spr;
     Material normal, white;
+    public GameObject corpse, damageIndicator;
 
     protected virtual void Awake()
     {
@@ -28,6 +29,19 @@ public abstract class Damageable : MonoBehaviour
         CancelInvoke("Unwhite");
         Invoke("Unwhite", 0.06f);
         Debug.Log("tried to damage");
+        spr.transform.localScale = new Vector3(0.8f, 1.2f, 1f);
+        SpawnDamageIndicator(damage);
+    }
+
+    public void SpawnDamageIndicator(float damage)
+    {
+        Instantiate(damageIndicator, transform.position, Quaternion.identity).GetComponent<DamageIndicator>().SetIndicator(damage, spr.sprite.bounds.extents);
+    }
+
+    public virtual void Die()
+    {
+        if (corpse) Instantiate(corpse, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
     
     void Unwhite()
@@ -37,9 +51,10 @@ public abstract class Damageable : MonoBehaviour
 
     protected virtual void Update()
     {
+        spr.transform.localScale = Vector3.Lerp(spr.transform.localScale, Vector3.one, squashSpeed * Time.deltaTime);
         if (hc.health <= 0f)
         {
-            Destroy(gameObject);
+            Die();
         }
     }
 }

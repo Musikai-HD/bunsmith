@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static Extensions;
 
 public class PlayerController : Damageable
 {
@@ -22,11 +23,25 @@ public class PlayerController : Damageable
         Vector3 rotation = mousePos - transform.position;
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         weapon.aimAngle = rotZ;
+        spr.flipX = EulerSign(rotZ) == -1;
 
         if (fireHeld)
         {
             weapon.TryFire();
         }
+    }
+
+    void OnDisable()
+    {
+        //fix this! passing ref instead of copy
+        GameManager.instance.savedHealth = hc;
+        GameManager.instance.savedWeapon = weapon.weapon;
+    }
+
+    void OnEnable()
+    {
+        hc = GameManager.instance.savedHealth ?? hc;
+        weapon.weapon = GameManager.instance.savedWeapon ?? weapon.weapon;
     }
 
     public void Move(InputAction.CallbackContext context)

@@ -12,8 +12,12 @@ public class Hitbox
     {
         if ((hittableLayers & 1 << col.gameObject.layer) == 1 << col.gameObject.layer && canHit)
         {
-            col.gameObject.GetComponent<Damageable>().Damage(hitInfo.damage);
-            AudioManager.instance.Play(hit);
+            Damageable dam = col.gameObject.GetComponent<Damageable>();
+            if (dam) 
+            {
+                dam.Damage(hitInfo.damage);
+                AudioManager.instance.Play(hit);
+            }
             canHit = false;
             return true;
         }

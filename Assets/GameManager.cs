@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
+    public Weapon savedWeapon;
+    public HealthComponent savedHealth;
+
     void Awake()
     {
         //singleton declaration
@@ -21,7 +24,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-
+        DontDestroyOnLoad(gameObject);
         pc = GameObject.Find("Player").GetComponent<PlayerController>();
         gw = pc.weapon;
         debugger = GameObject.Find("Debugger").GetComponent<Debugger>();
