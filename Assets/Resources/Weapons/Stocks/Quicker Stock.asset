@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Quicker Stock
   m_EditorClassIdentifier: 
   menuSprite: {fileID: 0}
-  rarity: 0
+  rarity: 2
   damageMult: 0.775
   fireRateMult: 1.666667
   accuracyMult: 0.775

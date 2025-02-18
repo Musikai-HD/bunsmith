@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hardest Stock
   m_EditorClassIdentifier: 
   menuSprite: {fileID: 0}
-  rarity: 0
+  rarity: 3
   damageMult: 2
   fireRateMult: 0.55
   accuracyMult: 1.3

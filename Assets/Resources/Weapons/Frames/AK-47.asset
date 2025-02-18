@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AK-47
   m_EditorClassIdentifier: 
   menuSprite: {fileID: 0}
-  rarity: 0
+  rarity: 2
   sprite: {fileID: 0}
   damage: 6
   fireRate: 0.15
@@ -22,3 +22,4 @@ MonoBehaviour:
   bulletCount: 1
   reload: 0.75
   bulletSpeed: 12
+  bulletLiftetime: 3

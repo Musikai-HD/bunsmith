@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Machine Gun
   m_EditorClassIdentifier: 
   menuSprite: {fileID: 0}
-  rarity: 0
+  rarity: 1
   sprite: {fileID: 0}
   damage: 4
   fireRate: 0.08
@@ -22,3 +22,4 @@ MonoBehaviour:
   bulletCount: 1
   reload: 1.5
   bulletSpeed: 12
+  bulletLiftetime: 3

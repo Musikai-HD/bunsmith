@@ -28,7 +28,6 @@ public abstract class Damageable : MonoBehaviour
         spr.material = white;
         CancelInvoke("Unwhite");
         Invoke("Unwhite", 0.06f);
-        Debug.Log("tried to damage");
         spr.transform.localScale = new Vector3(0.8f, 1.2f, 1f);
         SpawnDamageIndicator(damage);
     }
@@ -40,7 +39,12 @@ public abstract class Damageable : MonoBehaviour
 
     public virtual void Die()
     {
-        if (corpse) Instantiate(corpse, transform.position, Quaternion.identity);
+        if (corpse) 
+        {
+            SpriteRenderer corpseSprite = Instantiate(corpse, transform.position, Quaternion.identity).GetComponent<Corpse>().sr;
+            corpseSprite.flipY = spr.flipX;
+            corpseSprite.sprite = spr.sprite;
+        }
         Destroy(gameObject);
     }
     

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Very Compressed Mag
   m_EditorClassIdentifier: 
   menuSprite: {fileID: 0}
-  rarity: 0
+  rarity: 3
   damageMult: 0.6
   fireRateMult: 1
   accuracyMult: 0.7

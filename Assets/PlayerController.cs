@@ -14,6 +14,7 @@ public class PlayerController : Damageable
     public GameWeapon weapon;
 
     public PlayerInput input;
+    public InteractChecker interactor;
 
     protected override void Update()
     {
@@ -52,6 +53,14 @@ public class PlayerController : Damageable
     public void Attack(InputAction.CallbackContext context)
     {
         fireHeld = context.ReadValueAsButton();
+    }
+
+    public void Interact(InputAction.CallbackContext context)
+    {
+        if (context.ReadValueAsButton())
+        {
+            interactor.Interact();
+        }
     }
 
     public void Reload(InputAction.CallbackContext context)

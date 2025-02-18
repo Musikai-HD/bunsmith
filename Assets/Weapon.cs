@@ -23,6 +23,7 @@ public class Weapon
     public Status.StatusType BulletStatus {get; private set;}
     public float StatusTime {get; private set;}
     public float StatusDamage {get; private set;}
+    public int PierceCount {get; private set;}
 
     public void InitializeWeapon()
     {
@@ -73,6 +74,8 @@ public class Weapon
         (bullets == null ? 1f : bullets.bulletCountMult));
 
         BulletStatus = bullets == null ? Status.StatusType.None : bullets.status;
+
+        PierceCount = bullets == null ? 0 : bullets.pierceCount;
     }
 
 }

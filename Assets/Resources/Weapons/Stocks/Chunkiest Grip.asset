@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chunkiest Grip
   m_EditorClassIdentifier: 
   menuSprite: {fileID: 0}
-  rarity: 0
+  rarity: 3
   damageMult: 0.5
   fireRateMult: 0.7
   accuracyMult: 0.65

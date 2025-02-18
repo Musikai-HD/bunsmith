@@ -47,6 +47,7 @@ DamageIndicator : MonoBehaviour
     }
 
     void FadeOut()
+    
     {
         fadingOut = true;
     }

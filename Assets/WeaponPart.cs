@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WeaponPart : ItemWrapper
+public class WeaponPart : WeaponComponent
 {
     public float damageMult = 1f;
     public float fireRateMult = 1f;

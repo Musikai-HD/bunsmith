@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -6,22 +7,27 @@ public class Hitbox
     public LayerMask hittableLayers;
     public HitInfo hitInfo;
     public AudioClip hit;
-    public bool canHit;
+    public List<GameObject> blacklist = new List<GameObject>();
+    public bool canHit = true;
 
-    public virtual bool Hit(Collider2D col)
+    public virtual int Hit(Collider2D col)
     {
         if ((hittableLayers & 1 << col.gameObject.layer) == 1 << col.gameObject.layer && canHit)
         {
             Damageable dam = col.gameObject.GetComponent<Damageable>();
-            if (dam) 
+            if (dam && !blacklist.Contains(col.gameObject)) 
             {
                 dam.Damage(hitInfo.damage);
                 AudioManager.instance.Play(hit);
+                blacklist.Add(col.gameObject);
             }
-            canHit = false;
-            return true;
+            if (!dam)
+            {
+                return 0;
+            }
+            return 1;
         }
-        return false;
+        return 2;
     }
 }
 

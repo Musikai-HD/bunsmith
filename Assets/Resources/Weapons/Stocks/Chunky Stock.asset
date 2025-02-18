@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chunky Stock
   m_EditorClassIdentifier: 
   menuSprite: {fileID: 0}
-  rarity: 0
+  rarity: 1
   damageMult: 0.7
   fireRateMult: 0.9
   accuracyMult: 0.8

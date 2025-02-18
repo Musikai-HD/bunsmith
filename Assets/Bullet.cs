@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,6 +9,7 @@ public class Bullet : MonoBehaviour
     public SpriteRenderer sr;
     public Hitbox hb;
     public float lifetime;
+    public int pierceCount;
 
     void Awake()
     {
@@ -26,13 +28,28 @@ public class Bullet : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        if (hb.Hit(col))
+        if (hb.Hit(col) == 1)
         {
-            hitParticles.Play();
-            mainParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-            sr.enabled = false;
-            CancelInvoke("Die");
-            Invoke("Die", 1f);
+            if (pierceCount > 0)
+            {
+                pierceCount--;
+            }
+            else
+            {
+                Explode();
+                hb.canHit = false;
+            }
         }
+        if (hb.Hit(col) == 0) Explode();
+    }
+
+    void Explode()
+    {
+        hitParticles.Play();
+        mainParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        CancelInvoke("Die");
+        sr.enabled = false;
+        rb.linearVelocity = Vector2.zero;
+        Invoke("Die", 1f);
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Weapon Frame", menuName = "Weapon/Frame", order = 0)]
-public class WeaponFrame : ItemWrapper
+public class WeaponFrame : WeaponComponent
 {
     public Sprite sprite;
     public float damage = 1f;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Double Barrel
   m_EditorClassIdentifier: 
   menuSprite: {fileID: 0}
-  rarity: 0
+  rarity: 2
   sprite: {fileID: 0}
   damage: 4
   fireRate: 0.15

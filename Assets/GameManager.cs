@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         pc = GameObject.Find("Player").GetComponent<PlayerController>();
         gw = pc.weapon;
         debugger = GameObject.Find("Debugger").GetComponent<Debugger>();

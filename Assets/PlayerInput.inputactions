@@ -33,6 +33,24 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Interact",
+                    "type": "PassThrough",
+                    "id": "194ca847-9f87-4269-8199-94aa53e8c6ad",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DEBUG Open Debug Menu",
+                    "type": "PassThrough",
+                    "id": "56a401a4-0ede-4ad8-855f-fa2936f92d47",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "DEBUG Spawn Enemy",
                     "type": "PassThrough",
                     "id": "b3ba112b-4471-4a38-97c0-7bc07812360d",
@@ -192,7 +210,7 @@
                     "path": "<Mouse>/middleButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "DEBUG Spawn Enemy",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -205,6 +223,28 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a8f1b7e7-4f91-47d7-9e9f-b795ae2ed1ac",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "DEBUG Open Debug Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e2a00826-eee7-4cd7-b08b-a502fa834018",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

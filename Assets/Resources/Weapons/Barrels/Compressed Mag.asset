@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Compressed Mag
   m_EditorClassIdentifier: 
   menuSprite: {fileID: 0}
-  rarity: 0
+  rarity: 2
   damageMult: 0.7
   fireRateMult: 1
   accuracyMult: 0.8

@@ -3,7 +3,7 @@ using UnityEngine;
 public class Corpse : MonoBehaviour
 {
     bool vanishing;
-    [SerializeField] SpriteRenderer sr;
+    public SpriteRenderer sr;
     void Start()
     {
         Invoke("Die", 4f);

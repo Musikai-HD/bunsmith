@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: 
   menuSprite: {fileID: 0}
-  rarity: 0
+  rarity: 2
   sprite: {fileID: 0}
   damage: 25
   fireRate: 0.5
@@ -22,3 +22,4 @@ MonoBehaviour:
   bulletCount: 1
   reload: 1
   bulletSpeed: 20
+  bulletLiftetime: 3

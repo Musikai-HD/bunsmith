@@ -83,8 +83,10 @@ public class GameWeapon : MonoBehaviour
         {
             GameObject bullet = Instantiate(bulletPrefab, spriteParent.position, Quaternion.identity);
             bullet.GetComponent<Rigidbody2D>().linearVelocity = (Vector2)(Quaternion.Euler(0, 0, aimAngle + Random.Range(-weapon.Accuracy, weapon.Accuracy)) * Vector2.right) * weapon.BulletSpeed;
-            bullet.GetComponent<Bullet>().hb.hitInfo = new HitInfo(weapon.Damage, weapon.BulletStatus, weapon.StatusDamage, weapon.StatusTime);
-            bullet.GetComponent<Bullet>().lifetime = weapon.frame.bulletLiftetime;
+            Bullet bulletScript = bullet.GetComponent<Bullet>();
+            bulletScript.hb.hitInfo = new HitInfo(weapon.Damage, weapon.BulletStatus, weapon.StatusDamage, weapon.StatusTime);
+            bulletScript.lifetime = weapon.frame.bulletLiftetime;
+            bulletScript.pierceCount = weapon.PierceCount;
         }
         recoil = weapon.Damage * recoilMult * weapon.BulletCount;
         AudioManager.instance.Play(bigFire);
@@ -93,6 +95,30 @@ public class GameWeapon : MonoBehaviour
     void SetCanFire()
     {
         canFire = true;
+    }
+
+    public void Equip(WeaponComponent part)
+    {
+        switch (part)
+        {
+            case WeaponStock:
+                GameManager.instance.gw.weapon.stock = part as WeaponStock;
+                break;
+            case WeaponBarrel:
+                GameManager.instance.gw.weapon.barrel = part as WeaponBarrel;
+                break;
+            case WeaponFrame:
+                GameManager.instance.gw.weapon.frame = part as WeaponFrame;
+                break;
+            case WeaponBullets:
+                GameManager.instance.gw.weapon.bullets = part as WeaponBullets;
+                break;
+            case WeaponAttachment:
+                GameManager.instance.gw.weapon.attachment = part as WeaponAttachment;
+                break;
+        }
+        Reload();
+        InitializeWeapon();
     }
 
     public void Reload()

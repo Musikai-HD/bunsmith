@@ -208,8 +208,10 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 72
     hit: {fileID: 8300000, guid: ea21fb5fd90e98d41bf6a5884134e739, type: 3}
+    blacklist: []
     canHit: 1
   lifetime: 0
+  pierceCount: 0
 --- !u!1 &4591039679929895223
 GameObject:
   m_ObjectHideFlags: 0

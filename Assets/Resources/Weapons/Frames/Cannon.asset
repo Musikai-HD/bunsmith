@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cannon
   m_EditorClassIdentifier: 
   menuSprite: {fileID: 0}
-  rarity: 0
+  rarity: 3
   sprite: {fileID: 0}
   damage: 50
   fireRate: 1
@@ -22,3 +22,4 @@ MonoBehaviour:
   bulletCount: 1
   reload: 1.5
   bulletSpeed: 15
+  bulletLiftetime: 3
