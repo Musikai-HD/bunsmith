@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 11400000, guid: 3cf7e58004726434bbac819662ab1736, type: 2}
+  groundItemPrefab: {fileID: 3787868736879335118, guid: de029e76e2c9195499d44a22cf91de56, type: 3}
 --- !u!61 &5629674168199927044
 BoxCollider2D:
   m_ObjectHideFlags: 0

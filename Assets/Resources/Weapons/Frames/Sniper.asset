@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Sniper
   m_EditorClassIdentifier: 
   menuSprite: {fileID: 0}
-  rarity: 1
-  sprite: {fileID: 0}
+  rarity: 0
+  sprite: {fileID: 5070333123558391652, guid: caa4af00988a6174b83aacd2b298bb48, type: 3}
   damage: 30
   fireRate: 0.6666667
   accuracy: 0

@@ -14,4 +14,9 @@ public class WeaponBullets : WeaponPart
         Rocket,
         Piercing
     }
+
+    public override string GetDescription()
+    {
+        return description;
+    }
 }

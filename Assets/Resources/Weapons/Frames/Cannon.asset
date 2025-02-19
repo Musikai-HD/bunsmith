@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Cannon
   m_EditorClassIdentifier: 
   menuSprite: {fileID: 0}
-  rarity: 3
-  sprite: {fileID: 0}
+  rarity: 2
+  sprite: {fileID: 5070333123558391652, guid: caa4af00988a6174b83aacd2b298bb48, type: 3}
   damage: 50
   fireRate: 1
   accuracy: 0

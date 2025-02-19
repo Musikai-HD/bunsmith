@@ -27,4 +27,13 @@ public class HealthComponent
             health -= damage;
         }
     }
+
+    public void CopyFrom(HealthComponent other)
+    {
+        if (other == null) return;
+        maxHealth = other.maxHealth;
+        health = other.health;
+        maxShield = other.maxShield;
+        shield = other.shield;
+    }
 }

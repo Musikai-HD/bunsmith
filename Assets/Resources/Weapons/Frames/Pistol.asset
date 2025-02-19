@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuSprite: {fileID: 0}
   rarity: 0
-  sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  sprite: {fileID: 5070333123558391652, guid: caa4af00988a6174b83aacd2b298bb48, type: 3}
   damage: 7
   fireRate: 0.25
   accuracy: 1

@@ -31,7 +31,6 @@ public class GameWeapon : MonoBehaviour
     void Start()
     {
         canFire = true;
-        InitializeWeapon();
     }
     
     void OnValidate()

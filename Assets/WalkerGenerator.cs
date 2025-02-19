@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using TMPro;
 using Unity.Collections;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 public class WalkerGenerator : MonoBehaviour
 {
@@ -29,7 +32,9 @@ public class WalkerGenerator : MonoBehaviour
     public float fillPercentage = 0.4f;
     public float waitTime = 0.05f;
 
-    public GameObject chestPrefab;
+    public GameObject chestPrefab, exitPrefab;
+    public EnemyPack enemyPack;
+    public int roomPower, roomMaxPower;
 
     void Start()
     {
@@ -230,6 +235,13 @@ public class WalkerGenerator : MonoBehaviour
         {
             Instantiate(chestPrefab, GetRandomTilePos(floorMap), Quaternion.identity);
         }
+
+        if (exitPrefab != null)
+        {
+            Instantiate(exitPrefab, GetRandomTilePos(floorMap), Quaternion.identity);
+        }
+
+        if (enemyPack != null) PopulateWithEnemies(enemyPack);
     }
     
     Vector3 GetRandomTilePos(Tilemap map)
@@ -253,5 +265,42 @@ public class WalkerGenerator : MonoBehaviour
         }
         int randomChoice = UnityEngine.Random.Range(0, availablePlaces.Count - 1);
         return availablePlaces[randomChoice] + new Vector3(0.5f, 0.5f, 0f);
+    }
+
+    void PopulateWithEnemies(EnemyPack ep)
+    {
+        ep.enemyPack.Sort();
+        int leastPower = ep.enemyPack[0].enemy.enemyPower;
+        while (roomPower <= roomMaxPower - leastPower)
+        {
+            List<PickableEnemy> possibleEnemies = new List<PickableEnemy>();
+            foreach (PickableEnemy ec in ep.enemyPack)
+            {
+                if (ec.enemy.enemyPower <= (roomMaxPower - roomPower))
+                {
+                    possibleEnemies.Add(ec);
+                }
+            }
+            EnemyContainer randomEnemy = PickRandomEnemy(possibleEnemies);
+            GameObject enemyPrefabToPlace = randomEnemy.enemyPrefab;
+            Instantiate(enemyPrefabToPlace, GetRandomTilePos(floorMap), Quaternion.identity);
+            roomPower += randomEnemy.enemyPower;
+        }
+    }
+
+    EnemyContainer PickRandomEnemy(List<PickableEnemy> ep)
+    {
+        int totalChance = ep.Sum(enemy => enemy.chance);
+        int randomValue = Random.Range(0, totalChance);
+        int chanceThreshold = 0;
+        foreach (PickableEnemy enemy in ep)
+        {
+            chanceThreshold += enemy.chance;
+            if (randomValue <= chanceThreshold)
+            {
+                return enemy.enemy;
+            }
+        }
+        return null;
     }
 }

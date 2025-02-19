@@ -35,14 +35,21 @@ public class PlayerController : Damageable
     void OnDisable()
     {
         //fix this! passing ref instead of copy
-        GameManager.instance.savedHealth = hc;
-        GameManager.instance.savedWeapon = weapon.weapon;
+        GameManager.instance.savedHealth = new HealthComponent();
+        GameManager.instance.savedHealth.CopyFrom(hc);
+        GameManager.instance.savedWeapon = new Weapon();
+        GameManager.instance.savedWeapon.CopyFrom(weapon.weapon);
     }
 
     void OnEnable()
     {
-        hc = GameManager.instance.savedHealth ?? hc;
-        weapon.weapon = GameManager.instance.savedWeapon ?? weapon.weapon;
+        hc.CopyFrom(GameManager.instance.savedHealth);
+        if (GameManager.instance.savedWeapon.frame != null)
+        {
+            weapon.weapon = new Weapon();
+            weapon.weapon.CopyFrom(GameManager.instance.savedWeapon);
+        }
+        weapon.InitializeWeapon();
     }
 
     public void Move(InputAction.CallbackContext context)

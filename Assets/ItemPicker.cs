@@ -1,15 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using JetBrains.Annotations;
-using NUnit.Framework.Internal;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public static class ItemPicker
 {
     public static ItemWrapper PickItem(ItemPool pool)
     {
+        //currently pulling from a pool of every existing item in the game
+        pool.items = Resources.LoadAll<ItemWrapper>("").ToList();
+
         //define chances based on floor; defaults 
         float common = BaseChances.FLOOR1_CHANCE_COMMON;
         float uncommon = BaseChances.FLOOR1_CHANCE_UNCOMMON;
@@ -33,11 +32,10 @@ public static class ItemPicker
         List<WeaponBarrel> barrelPool = pool.items.OfType<WeaponBarrel>().ToList();
         List<WeaponAttachment> attachmentsPool = pool.items.OfType<WeaponAttachment>().ToList();
         List<WeaponBullets> bulletsPool = pool.items.OfType<WeaponBullets>().ToList();
-        pool.items.Clear();
 
         //select desired pool based on chance
-        ItemWrapper.ItemType _type = PickItemType();
-        Debug.Log(_type);
+        ItemWrapper.ItemType _type = PickItemType(pool.items);
+        pool.items.Clear();
         switch (_type)
         {
             case ItemWrapper.ItemType.WeaponFrame:
@@ -63,7 +61,6 @@ public static class ItemPicker
 
     public static ItemWrapper PickItem(ItemPool pool, float commonChance, float uncommonChance, float rareChance = 0f, float epicChance = 0f, float legendaryChance = 0f)
     {
-        Debug.Log($"{commonChance}, {uncommonChance}, {rareChance}, {epicChance}, {legendaryChance}");
         List<ItemWrapper> commons = new List<ItemWrapper>();
         List<ItemWrapper> uncommons = new List<ItemWrapper>();
         List<ItemWrapper> rares = new List<ItemWrapper>();
@@ -135,6 +132,7 @@ public static class ItemPicker
 
     public static ItemWrapper.ItemType PickItemType
     (
+        List<ItemWrapper> _pool,
         float _frame = BaseChances.TYPE_CHANCE_FRAME, 
         float _stock = BaseChances.TYPE_CHANCE_STOCK, 
         float _barrel = BaseChances.TYPE_CHANCE_BARREL, 
@@ -142,11 +140,11 @@ public static class ItemPicker
         float _bullets = BaseChances.TYPE_CHANCE_BULLETS
     )
     {
-        _frame *= GameManager.instance.framePity;
-        _stock *= GameManager.instance.stockPity;
-        _barrel *= GameManager.instance.barrelPity;
-        _attachment *= GameManager.instance.attachmentPity;
-        _bullets *= GameManager.instance.bulletsPity;
+        _frame *= !_pool.OfType<WeaponFrame>().Any() ? 0f : GameManager.instance.framePity;
+        _stock *= !_pool.OfType<WeaponStock>().Any() ? 0f : GameManager.instance.stockPity;
+        _barrel *= !_pool.OfType<WeaponBarrel>().Any() ? 0f : GameManager.instance.barrelPity;
+        _attachment *= !_pool.OfType<WeaponAttachment>().Any() ? 0f : GameManager.instance.attachmentPity;
+        _bullets *= !_pool.OfType<WeaponBullets>().Any() ? 0f : GameManager.instance.bulletsPity;
         float randomType = Random.Range(0, _frame
         + _stock
         + _barrel
@@ -154,26 +152,26 @@ public static class ItemPicker
         + _bullets
         );
 
+
+        //what de hell bro attachments are getting picked 99% of the time
         float chanceThreshold = 0f;
-        if (randomType < _frame)
-        {
-            return ItemWrapper.ItemType.WeaponFrame;
-        }
+        ItemWrapper.ItemType returnedType = ItemWrapper.ItemType.NONE;
+
+        if (randomType < _frame && returnedType == ItemWrapper.ItemType.NONE) returnedType = ItemWrapper.ItemType.WeaponFrame;
         chanceThreshold += _frame;
-        if (randomType < chanceThreshold + _stock)
-        {
-            return ItemWrapper.ItemType.WeaponStock;
-        }
+
+        if (randomType < chanceThreshold + _stock && returnedType == ItemWrapper.ItemType.NONE) returnedType = ItemWrapper.ItemType.WeaponStock;
         chanceThreshold += _stock;
-        if (randomType < chanceThreshold + _barrel)
-        {
-            return ItemWrapper.ItemType.WeaponBarrel;
-        }
+
+        if (randomType < chanceThreshold + _barrel && returnedType == ItemWrapper.ItemType.NONE) returnedType = ItemWrapper.ItemType.WeaponBarrel;
         chanceThreshold += _barrel;
-        if (randomType < chanceThreshold + _attachment)
-        {
-            return ItemWrapper.ItemType.WeaponAttachment;
-        }
-        return ItemWrapper.ItemType.WeaponBullets;
+
+        if (randomType < chanceThreshold + _attachment && returnedType == ItemWrapper.ItemType.NONE) returnedType = ItemWrapper.ItemType.WeaponAttachment;
+        chanceThreshold += _attachment;
+
+        if (returnedType == ItemWrapper.ItemType.NONE) returnedType = ItemWrapper.ItemType.WeaponBullets;
+
+        GameManager.instance.AdjustPity(returnedType);
+        return returnedType;
     }
 }

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Autobow
   m_EditorClassIdentifier: 
   menuSprite: {fileID: 0}
-  rarity: 3
-  sprite: {fileID: 0}
+  rarity: 2
+  sprite: {fileID: 5070333123558391652, guid: caa4af00988a6174b83aacd2b298bb48, type: 3}
   damage: 10
   fireRate: 0.06666667
   accuracy: 1

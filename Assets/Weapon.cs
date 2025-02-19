@@ -78,4 +78,13 @@ public class Weapon
         PierceCount = bullets == null ? 0 : bullets.pierceCount;
     }
 
+    public void CopyFrom(Weapon other)
+    {
+        frame = other.frame;
+        stock = other.stock;
+        barrel = other.barrel;
+        attachment = other.attachment;
+        bullets = other.bullets;
+    }
+
 }

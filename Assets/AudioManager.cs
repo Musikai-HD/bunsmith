@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
         }
+        DontDestroyOnLoad(gameObject);
     }
 
     public void Play(AudioClip clip)
