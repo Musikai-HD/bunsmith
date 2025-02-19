@@ -13,6 +13,14 @@ public class GameManager : MonoBehaviour
     public Weapon savedWeapon;
     public HealthComponent savedHealth;
 
+    //Pities
+    public float 
+    framePity = 1f,
+    stockPity = 1f,
+    barrelPity = 1f,
+    attachmentPity = 1f,
+    bulletsPity = 1f;
+
     void Awake()
     {
         //singleton declaration

@@ -32,8 +32,9 @@ public class EnemyBehavior : Damageable
         base.Update();
         path.maxSpeed = moveSpeed;
         if (!SeesPlayer()) timeSinceLastSeen += Time.deltaTime;
-        if (alerted && SeesPlayer() || timeSinceLastSeen < attentionSpan)
+        if (alerted && SeesPlayer())
         {
+            alerted = true;
             timeSinceLastSeen = 0f;
             aimDirection = (player.transform.position - transform.position).normalized;
         }

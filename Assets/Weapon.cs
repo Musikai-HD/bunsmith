@@ -31,11 +31,11 @@ public class Weapon
         StockSprite = stock == null ? null : stock.sprite;
         BarrelSprite = barrel == null ? null : barrel.sprite;
 
-        Damage = frame.damage * 
+        Damage = Mathf.Round(10f * frame.damage * 
         (stock == null ? 1f : stock.damageMult) * 
         (barrel == null ? 1f : barrel.damageMult) * 
         (attachment == null ? 1f : attachment.damageMult) * 
-        (bullets == null ? 1f : bullets.damageMult);
+        (bullets == null ? 1f : bullets.damageMult)) / 10f;
 
         FireRate = frame.fireRate / 
         ((stock == null ? 1f : stock.fireRateMult) * 

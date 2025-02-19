@@ -15,4 +15,14 @@ public class ItemWrapper : ScriptableObject
         Epic,
         Legendary
     }
+
+    public enum ItemType
+    {
+        Item,
+        WeaponFrame,
+        WeaponStock,
+        WeaponBarrel,
+        WeaponAttachment,
+        WeaponBullets
+    }
 }

@@ -5,6 +5,11 @@ using UnityEngine;
 public class ItemPool : ScriptableObject
 {
     public List<ItemWrapper> items;
-    public float commonChance = 60f, uncommonChance = 25f, rareChance = 10f, epicChance = 4f, legendaryChance = 1f;
+    public float 
+    commonChance = BaseChances.FLOOR1_CHANCE_COMMON, 
+    uncommonChance = BaseChances.FLOOR1_CHANCE_UNCOMMON, 
+    rareChance = BaseChances.FLOOR1_CHANCE_RARE, 
+    epicChance = BaseChances.FLOOR1_CHANCE_EPIC, 
+    legendaryChance = BaseChances.FLOOR1_CHANCE_LEGENDARY;
     public bool customChances;
 }

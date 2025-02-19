@@ -514,7 +514,7 @@ MonoBehaviour:
   maxWalkers: 5
   tileCount: 0
   fillPercentage: 0.2
-  waitTime: 0
+  waitTime: 0.01
   chestPrefab: {fileID: 7953422861914154769, guid: 1ffbadbb891a8a647a85af77d3046371, type: 3}
 --- !u!1001 &1878193378
 PrefabInstance:

@@ -41,8 +41,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7dfa17905c4f28c43900dc4f055704d5, type: 2}
   - {fileID: 11400000, guid: d23cb5add8120634b81d1a0dccbe81f4, type: 2}
   - {fileID: 11400000, guid: d8df6422b9ca23d4e96b7c5e92259a1b, type: 2}
-  commonChance: 60
-  uncommonChance: 25
-  rareChance: 10
-  epicChance: 4
-  legendaryChance: 1
+  commonChance: 35
+  uncommonChance: 32
+  rareChance: 20
+  epicChance: 9
+  legendaryChance: 4
+  customChances: 0

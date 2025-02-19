@@ -228,7 +228,6 @@ MonoBehaviour:
   damageIndicator: {fileID: 5244270117439880762, guid: 6ddf4b4eb03cf2049bc3c85871073f12, type: 3}
   moveSpeed: 2.5
   target: {x: 0, y: 0}
-  sr: {fileID: 1431785285885662719}
   attentionSpan: 2
   sightDistance: 7
   aimDirection: {x: 0, y: 0}
@@ -373,7 +372,7 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: 20
   rotationSpeed: 360
-  slowdownDistance: 6
+  slowdownDistance: 5
   pickNextWaypointDist: 0.5
   endReachedDistance: 4
   alwaysDrawGizmos: 0
