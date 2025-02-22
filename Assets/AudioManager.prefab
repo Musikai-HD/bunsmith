@@ -145,6 +145,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 2144294272461671035}
   musicSource: {fileID: 8123364658442406176}
+  possibleSongs:
+  - {fileID: 8300000, guid: bee0c2697e1591b459b7250148b1e74e, type: 3}
+  - {fileID: 8300000, guid: 8c2abcfaaa9e3f14bb972ee9e6bb1ba4, type: 3}
+  - {fileID: 8300000, guid: 7b57d257fcaff734e98ab64c22c65595, type: 3}
+  - {fileID: 8300000, guid: aca25029001fe1743877621c18e1cf6a, type: 3}
+  - {fileID: 8300000, guid: 177c468fb6434e049a1be6d3f2c5d490, type: 3}
 --- !u!82 &8123364658442406176
 AudioSource:
   m_ObjectHideFlags: 0
@@ -155,12 +161,12 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: d9573e43d72871a4fb532cdf20a7fa1e, type: 2}
-  m_audioClip: {fileID: 8300000, guid: bee0c2697e1591b459b7250148b1e74e, type: 3}
-  m_Resource: {fileID: 8300000, guid: bee0c2697e1591b459b7250148b1e74e, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 0.19
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

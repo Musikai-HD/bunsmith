@@ -7,6 +7,7 @@ public class GroundItem : Interactable
     public ItemWrapper part;
     [SerializeField] TextMeshPro nameText, descText;
     public Color commonColor, uncommonColor, rareColor, epicColor, legendaryColor;
+    public AudioClip pickupSound;
 
     public void Initialize()
     {
@@ -20,6 +21,7 @@ public class GroundItem : Interactable
         base.Interact();
         Debug.Log(part.GetDescription());
         GameManager.instance.pc.weapon.Equip(part as WeaponComponent);
+        AudioManager.instance.Play(pickupSound);
         Destroy(gameObject);
     }
 

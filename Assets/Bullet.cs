@@ -37,10 +37,12 @@ public class Bullet : MonoBehaviour
             else
             {
                 Explode();
-                hb.canHit = false;
             }
         }
-        if (hb.Hit(col) == 0) Explode();
+        if (hb.Hit(col) == 0) 
+        {
+            Explode();
+        }
     }
 
     void Explode()
@@ -50,6 +52,7 @@ public class Bullet : MonoBehaviour
         CancelInvoke("Die");
         sr.enabled = false;
         rb.linearVelocity = Vector2.zero;
+        hb.canHit = false;
         Invoke("Die", 1f);
     }
 }

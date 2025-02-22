@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18440b60732f8834980a650b1a9d41fd, type: 3}
+  m_Name: Duster Nozzle
+  m_EditorClassIdentifier: 
+  description: 
+  menuSprite: {fileID: 0}
+  rarity: 3
+  damageMult: 0.13
+  fireRateMult: 3
+  accuracyMult: 1
+  magMult: 3
+  reloadMult: 1
+  bulletSpeedMult: 1
+  bulletCountMult: 3
+  type: 0
+  status: 0
+  statusTime: 0
+  statusDamage: 0
+  explosive: 0
+  pierceCount: 999
+  lifetimeCap: 0.25

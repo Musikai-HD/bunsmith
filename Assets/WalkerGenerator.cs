@@ -22,8 +22,9 @@ public class WalkerGenerator : MonoBehaviour
     public Grid[,] gridHandler;
     public List<WalkerObject> walkers;
     public Tilemap floorMap, wallMap;
-    public Tile wall;
+    public RuleTile wall;
     public Tile floor;
+    public Tile emptyWall;
     public int mapWidth = 50, mapHeight = 50;
 
     public int minWalkers = 10;
@@ -45,11 +46,25 @@ public class WalkerGenerator : MonoBehaviour
     {
         gridHandler = new Grid[mapWidth, mapHeight];
         floorMap.transform.parent.position = new Vector3(-mapWidth/2 - 0.5f, -mapHeight/2 - 0.5f);
+        
+        //set out layer of empty walls
+        for (int i = -1; i < gridHandler.GetLength(0) + 1; i++)
+        {
+            wallMap.SetTile(new Vector3Int(i, -1, 0), emptyWall);
+            wallMap.SetTile(new Vector3Int(i, gridHandler.GetLength(1), 0), emptyWall);
+        }
+        for (int o = -1; o < gridHandler.GetLength(1) + 1; o++)
+        {
+            wallMap.SetTile(new Vector3Int(-1, o, 0), emptyWall);
+            wallMap.SetTile(new Vector3Int(gridHandler.GetLength(0), o, 0), emptyWall);
+        }
+        
         for (int i = 0; i < gridHandler.GetLength(0); i++)
         {
             for (int o = 0; o < gridHandler.GetLength(1); o++)
             {
-                gridHandler[i,o] = Grid.EMPTY;
+                gridHandler[i,o] = Grid.WALL;
+                wallMap.SetTile(new Vector3Int(i, o, 0), wall);
             }
         }
 
@@ -60,13 +75,16 @@ public class WalkerGenerator : MonoBehaviour
         WalkerObject curWalker = new WalkerObject(new Vector2(tileCenter.x, tileCenter.y), GetDirection(), 0.5f);
         //gridHandler[tileCenter.x, tileCenter.y] = Grid.FLOOR;
         //floorMap.SetTile(tileCenter, floor);
+        //CreateWalls();
         for (int i = -1; i < 2; i++)
 
         {
             for (int o = -1; o < 2; o++)
             {
+                Vector3Int pos = new Vector3Int(tileCenter.x + i, tileCenter.y + o, 0);
                 gridHandler[tileCenter.x + i, tileCenter.y + o] = Grid.FLOOR;
-                floorMap.SetTile(new Vector3Int(tileCenter.x + i, tileCenter.y + o, 0), floor);
+                floorMap.SetTile(pos, floor);
+                wallMap.SetTile(pos, null);
             }
         }
         walkers.Add(curWalker);
@@ -109,6 +127,7 @@ public class WalkerGenerator : MonoBehaviour
                     floorMap.SetTile(curPos, floor);
                     tileCount++;
                     gridHandler[curPos.x, curPos.y] = Grid.FLOOR;
+                    wallMap.SetTile(curPos, null);
                     hasCreatedFloor = true;
                 }
             }
@@ -125,7 +144,7 @@ public class WalkerGenerator : MonoBehaviour
             }
         }
 
-        StartCoroutine(CreateWalls());
+        FinishGeneration();
     }
 
     void ChanceToRemove()
@@ -182,11 +201,22 @@ public class WalkerGenerator : MonoBehaviour
         }
     }
 
-    IEnumerator CreateWalls()
+    void CreateWalls()
     {
         for (int x = 0; x < gridHandler.GetLength(0) - 1; x++)
         {
             for (int y = 0; y < gridHandler.GetLength(1) - 1; y++)
+            {
+                //gridHandler[x, y] = Grid.WALL;
+                wallMap.SetTile(new Vector3Int(x, y, 0), wall);
+            }
+        }   
+        /*int[] gridLength = new int[2];
+        gridLength[0] = gridHandler.GetLength(0);
+        gridLength[1] = gridHandler.GetLength(1);
+        for (int x = 1; x < gridLength[0] - 1; x++)
+        {
+            for (int y = 1; y < gridLength[1] - 1; y++)
             {
                 if (gridHandler[x, y] == Grid.FLOOR)
                 {
@@ -224,11 +254,51 @@ public class WalkerGenerator : MonoBehaviour
                 }
             }
         }
-        FinishGeneration();
+        for (int x = 1; x < gridLength[0] - 1; x++)
+        {
+            for (int y = 1; y < gridLength[1] - 1; y++)
+            {
+                if (gridHandler[x, y] == Grid.WALL)
+                {
+                    bool hasCreatedWall = false;
+
+                    if (gridHandler[x + 1, y] == Grid.EMPTY)
+                    {
+                        wallMap.SetTile(new Vector3Int(x + 1, y, 0), wall);
+                        gridHandler[x + 1, y] = Grid.WALL;
+                        hasCreatedWall = true;
+                    }
+                    if (gridHandler[x - 1, y] == Grid.EMPTY)
+                    {
+                        wallMap.SetTile(new Vector3Int(x - 1, y, 0), wall);
+                        gridHandler[x - 1, y] = Grid.WALL;
+                        hasCreatedWall = true;
+                    }
+                    if (gridHandler[x, y + 1] == Grid.EMPTY)
+                    {
+                        wallMap.SetTile(new Vector3Int(x, y + 1, 0), wall);
+                        gridHandler[x, y + 1] = Grid.WALL;
+                        hasCreatedWall = true;
+                    }
+                    if (gridHandler[x, y - 1] == Grid.EMPTY)
+                    {
+                        wallMap.SetTile(new Vector3Int(x, y - 1, 0), wall);
+                        gridHandler[x, y - 1] = Grid.WALL;
+                        hasCreatedWall = true;
+                    }
+
+                    if (hasCreatedWall)
+                    {
+                        yield return new WaitForSeconds(waitTime);
+                    }
+                }
+            }
+        }*/
     }
 
     public void FinishGeneration()
     {
+        FixTiles(wallMap);
         AstarPath.active?.Scan();
         
         if (chestPrefab != null)
@@ -302,5 +372,29 @@ public class WalkerGenerator : MonoBehaviour
             }
         }
         return null;
+    }
+
+    void FixTiles(Tilemap map)
+    {
+        BoundsInt bounds = map.cellBounds;
+
+        for (int x = bounds.xMin; x < bounds.xMax; x++)
+        {
+            for (int y = bounds.yMin; y < bounds.yMax; y++)
+            {
+                for (int z = bounds.zMin; z < bounds.zMax; z++)
+                {
+                    Vector3Int pos = new Vector3Int(x, y, z);
+                    TileBase tile = map.GetTile(pos);
+
+                    if (tile != null)
+                    {
+                        map.SetTile(pos, null);
+                        map.SetTile(pos, tile);
+                    }
+                }
+            }
+        }
+        map.RefreshAllTiles();
     }
 }

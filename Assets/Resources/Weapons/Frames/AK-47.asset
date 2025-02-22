@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b229b91f77762b04782333fdc5eea536, type: 3}
   m_Name: AK-47
   m_EditorClassIdentifier: 
+  description: 
   menuSprite: {fileID: 0}
   rarity: 1
   sprite: {fileID: 5070333123558391652, guid: caa4af00988a6174b83aacd2b298bb48, type: 3}
@@ -20,6 +21,6 @@ MonoBehaviour:
   accuracy: 3
   mag: 30
   bulletCount: 1
-  reload: 0.75
+  reload: 2
   bulletSpeed: 12
   bulletLiftetime: 3

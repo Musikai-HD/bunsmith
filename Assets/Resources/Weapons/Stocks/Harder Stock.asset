@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6904c131f2225f246bb20dda8282bfa2, type: 3}
   m_Name: Harder Stock
   m_EditorClassIdentifier: 
+  description: 
   menuSprite: {fileID: 0}
   rarity: 1
   damageMult: 1.66
-  fireRateMult: 0.66
-  accuracyMult: 1.2
+  fireRateMult: 0.8
+  accuracyMult: 1.3
   magMult: 1
-  reloadMult: 0.775
-  bulletSpeedMult: 1.25
+  reloadMult: 1
+  bulletSpeedMult: 1.4
   bulletCountMult: 1
   sprite: {fileID: 0}

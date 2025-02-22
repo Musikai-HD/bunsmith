@@ -13,6 +13,7 @@ public class EnemyBehavior : Damageable
     protected GameObject player;
     public bool alerted;
     protected float timeSinceLastSeen;
+    public int scoreWorth, goldWorth;
 
     protected override void Awake()
     {
@@ -48,6 +49,12 @@ public class EnemyBehavior : Damageable
     {
         base.Damage(damage);
         alerted = true;
+    }
+
+    public override void Die()
+    {
+        GameManager.instance.score += scoreWorth;
+        base.Die();
     }
 
     public bool SeesPlayer()

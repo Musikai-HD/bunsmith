@@ -7,13 +7,15 @@ public class GameManager : MonoBehaviour
     public PlayerController pc;
     public Debugger debugger;
     public GameWeapon gw;
-    public TextMeshProUGUI healthText, ammoText, gunText;
+    public TextMeshProUGUI healthText, ammoText, gunText, scoreText;
 
     public static GameManager instance;
 
     public Weapon savedWeapon;
     public HealthComponent savedHealth;
     public float pityReturnFactor, pityCrutchFactor;
+
+    public int score;
 
     //Pities
     public float 
@@ -56,12 +58,14 @@ public class GameManager : MonoBehaviour
         gunText = GameObject.Find("GunText").GetComponent<TextMeshProUGUI>();
         ammoText = GameObject.Find("Mag Text").GetComponent<TextMeshProUGUI>();
         healthText = GameObject.Find("Health Text").GetComponent<TextMeshProUGUI>();
+        scoreText = GameObject.Find("Score Text").GetComponent<TextMeshProUGUI>();
     }
 
     void Update()
     {
         healthText.text = $"HP: {pc?.hc.health}/{pc?.hc.maxHealth}";
         ammoText.text = $"{gw.mag}<size=55%><voffset=21>{gw.weapon.Mag}";
+        scoreText.text = score.ToString();
         if (debugger.debugToolsOn && gw.weapon != null)
         {
             gunText.text = "<b>" + (gw.weapon.frame == null ? "" : gw.weapon.frame) + "\n</b>"

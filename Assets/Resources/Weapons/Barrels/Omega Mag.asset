@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f631829b84ba84eb4ce9e551fbe88f, type: 3}
   m_Name: Omega Mag
   m_EditorClassIdentifier: 
+  description: 
   menuSprite: {fileID: 0}
   rarity: 3
   damageMult: 1
   fireRateMult: 1
   accuracyMult: 1
   magMult: 5
-  reloadMult: 0.3333333
+  reloadMult: 0.7
   bulletSpeedMult: 1
   bulletCountMult: 1
   sprite: {fileID: 0}

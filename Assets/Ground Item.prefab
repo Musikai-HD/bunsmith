@@ -56,6 +56,7 @@ MonoBehaviour:
   rareColor: {r: 0.39999998, g: 0.6143475, b: 1, a: 1}
   epicColor: {r: 0.78431374, g: 0.4, b: 1, a: 1}
   legendaryColor: {r: 0.96862745, g: 1, b: 0.4, a: 1}
+  pickupSound: {fileID: 8300000, guid: b4a693435e0f377438485de704dc8cb1, type: 3}
 --- !u!58 &1257881278338413441
 CircleCollider2D:
   m_ObjectHideFlags: 0

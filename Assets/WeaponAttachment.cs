@@ -4,4 +4,5 @@ using UnityEngine;
 public class WeaponAttachment : WeaponPart
 {
     public float statusTime, statusDamage;
+    public bool fixedSpread;
 }

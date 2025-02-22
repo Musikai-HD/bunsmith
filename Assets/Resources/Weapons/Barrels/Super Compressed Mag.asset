@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f631829b84ba84eb4ce9e551fbe88f, type: 3}
   m_Name: Super Compressed Mag
   m_EditorClassIdentifier: 
+  description: 
   menuSprite: {fileID: 0}
   rarity: 4
-  damageMult: 0.5
+  damageMult: 0.7
   fireRateMult: 1
-  accuracyMult: 0.6
+  accuracyMult: 0.5
   magMult: 0.25
   reloadMult: 1
   bulletSpeedMult: 1

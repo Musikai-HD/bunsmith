@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6904c131f2225f246bb20dda8282bfa2, type: 3}
   m_Name: Chunkier Stock
   m_EditorClassIdentifier: 
+  description: 
   menuSprite: {fileID: 0}
   rarity: 2
-  damageMult: 0.6
-  fireRateMult: 0.8
-  accuracyMult: 0.7
-  magMult: 0.7
+  damageMult: 0.7
+  fireRateMult: 0.85
+  accuracyMult: 0.65
+  magMult: 1
   reloadMult: 0.8
   bulletSpeedMult: 1
   bulletCountMult: 3

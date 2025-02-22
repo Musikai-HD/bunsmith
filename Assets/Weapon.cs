@@ -13,17 +13,18 @@ public class Weapon
     public Sprite BaseSprite {get; private set;}
     public Sprite BarrelSprite {get; private set;}
 
-    public float Damage {get; private set;}
-    public float FireRate {get; private set;}
-    public float Accuracy {get; private set;}
-    public int Mag {get; private set;}
-    public float Reload {get; private set;}
-    public float BulletSpeed {get; private set;}
-    public int BulletCount {get; private set;}
-    public Status.StatusType BulletStatus {get; private set;}
-    public float StatusTime {get; private set;}
-    public float StatusDamage {get; private set;}
-    public int PierceCount {get; private set;}
+    public float Damage;
+    public float FireRate;
+    public float Accuracy;
+    public int Mag;
+    public float Reload;
+    public float BulletSpeed;
+    public int BulletCount;
+    public Status.StatusType BulletStatus;
+    public float StatusTime;
+    public float StatusDamage;
+    public int PierceCount;
+    public float BulletLifetime;
 
     public void InitializeWeapon()
     {
@@ -76,6 +77,13 @@ public class Weapon
         BulletStatus = bullets == null ? Status.StatusType.None : bullets.status;
 
         PierceCount = bullets == null ? 0 : bullets.pierceCount;
+
+        BulletLifetime = frame == null ? 0f : frame.bulletLiftetime;
+
+        stock?.ExtraThings(this);
+        barrel?.ExtraThings(this);
+        attachment?.ExtraThings(this);
+        bullets?.ExtraThings(this);
     }
 
     public void CopyFrom(Weapon other)

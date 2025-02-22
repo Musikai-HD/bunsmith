@@ -1,9 +1,18 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static Extensions;
 
 public class PlayerController : Damageable
 {
+    public enum PlayerState
+    {
+        Normal,
+        Dashing,
+        Locked
+    }
+    public PlayerState state;
+    bool inputsLocked;
     public float maxSpeed;
     public float curSpeed;
     public Vector2 curInput;
@@ -19,16 +28,23 @@ public class PlayerController : Damageable
     protected override void Update()
     {
         base.Update();
-        rb.linearVelocity = curInput * maxSpeed;
+        RegisterState();
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 rotation = mousePos - transform.position;
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        weapon.aimAngle = rotZ;
-        spr.flipX = EulerSign(rotZ) == -1;
-
-        if (fireHeld)
+        if (inputsLocked)
         {
-            weapon.TryFire();
+            curInput = Vector2.zero;
+        }
+        else
+        {
+            weapon.aimAngle = rotZ;
+            spr.flipX = EulerSign(rotZ) == -1;
+            rb.linearVelocity = curInput * maxSpeed;
+            if (fireHeld)
+            {
+                weapon.TryFire();
+            }
         }
     }
 
@@ -52,6 +68,20 @@ public class PlayerController : Damageable
         weapon.InitializeWeapon();
     }
 
+    void RegisterState()
+    {
+        switch (state)
+        {
+            case PlayerState.Normal:
+                inputsLocked = false;
+                break;
+            case PlayerState.Dashing:
+            case PlayerState.Locked:
+                inputsLocked = true;
+                break;
+        }
+    }
+
     public void Move(InputAction.CallbackContext context)
     {
         curInput = context.ReadValue<Vector2>();
@@ -66,7 +96,10 @@ public class PlayerController : Damageable
     {
         if (context.ReadValueAsButton())
         {
-            interactor.Interact();
+            if (!inputsLocked)
+            {
+                interactor.Interact();
+            }
         }
     }
 
@@ -75,7 +108,7 @@ public class PlayerController : Damageable
         if (context.ReadValueAsButton())
         {
             Debug.Log("reload");
-            if (weapon.reloading == false)
+            if (weapon.reloading == false && !inputsLocked)
             {
                 weapon.Reload();
             }

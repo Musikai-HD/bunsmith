@@ -236,6 +236,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   alerted: 1
+  scoreWorth: 20
+  goldWorth: 10
 --- !u!61 &647001940853150451
 BoxCollider2D:
   m_ObjectHideFlags: 0

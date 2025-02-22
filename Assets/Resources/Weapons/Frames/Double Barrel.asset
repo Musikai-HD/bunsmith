@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b229b91f77762b04782333fdc5eea536, type: 3}
   m_Name: Double Barrel
   m_EditorClassIdentifier: 
+  description: 
   menuSprite: {fileID: 0}
   rarity: 2
   sprite: {fileID: 5070333123558391652, guid: caa4af00988a6174b83aacd2b298bb48, type: 3}
-  damage: 4
-  fireRate: 0.15
+  damage: 5
+  fireRate: 0.1
   accuracy: 22
   mag: 2
   bulletCount: 7
-  reload: 0.85
+  reload: 1.2
   bulletSpeed: 12
   bulletLiftetime: 0.5

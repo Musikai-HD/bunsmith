@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6904c131f2225f246bb20dda8282bfa2, type: 3}
-  m_Name: Chunkiest Grip
+  m_Name: The Great Chunk Stock
   m_EditorClassIdentifier: 
+  description: 
   menuSprite: {fileID: 0}
-  rarity: 3
+  rarity: 4
   damageMult: 0.5
-  fireRateMult: 0.7
-  accuracyMult: 0.65
-  magMult: 0.65
-  reloadMult: 0.7
+  fireRateMult: 0.75
+  accuracyMult: 0.4
+  magMult: 1
+  reloadMult: 0.65
   bulletSpeedMult: 1
-  bulletCountMult: 4
+  bulletCountMult: 6
   sprite: {fileID: 0}

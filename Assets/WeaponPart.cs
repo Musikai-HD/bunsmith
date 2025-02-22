@@ -30,10 +30,12 @@ public class WeaponPart : WeaponComponent
         // Format the result as a string with a "+" or "-" sign
         string result = percentageChange >= 0f
             ? $"+{percentageChange:0.##}%"
-            : $"-{1f-percentageChange:0.##}%";
+            : $"-{-percentageChange:0.##}%";
 
         if (_val == 1f) return "";
 
         return result + " " + _posttext +"\n";
     }
+
+    public virtual void ExtraThings(Weapon wep) {}
 }

@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f631829b84ba84eb4ce9e551fbe88f, type: 3}
   m_Name: Extra Mag
   m_EditorClassIdentifier: 
+  description: 
   menuSprite: {fileID: 0}
   rarity: 0
   damageMult: 1
   fireRateMult: 1
   accuracyMult: 1
   magMult: 1.5
-  reloadMult: 0.8
+  reloadMult: 1
   bulletSpeedMult: 1
   bulletCountMult: 1
   sprite: {fileID: 0}

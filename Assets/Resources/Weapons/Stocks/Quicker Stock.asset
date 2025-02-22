@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6904c131f2225f246bb20dda8282bfa2, type: 3}
   m_Name: Quicker Stock
   m_EditorClassIdentifier: 
+  description: 
   menuSprite: {fileID: 0}
   rarity: 2
-  damageMult: 0.775
-  fireRateMult: 1.666667
-  accuracyMult: 0.775
-  magMult: 1.666667
+  damageMult: 0.8
+  fireRateMult: 1.66
+  accuracyMult: 0.8
+  magMult: 1.3
   reloadMult: 1
   bulletSpeedMult: 1.2
   bulletCountMult: 1

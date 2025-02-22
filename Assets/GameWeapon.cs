@@ -84,7 +84,7 @@ public class GameWeapon : MonoBehaviour
             bullet.GetComponent<Rigidbody2D>().linearVelocity = (Vector2)(Quaternion.Euler(0, 0, aimAngle + Random.Range(-weapon.Accuracy, weapon.Accuracy)) * Vector2.right) * weapon.BulletSpeed;
             Bullet bulletScript = bullet.GetComponent<Bullet>();
             bulletScript.hb.hitInfo = new HitInfo(weapon.Damage, weapon.BulletStatus, weapon.StatusDamage, weapon.StatusTime);
-            bulletScript.lifetime = weapon.frame.bulletLiftetime;
+            bulletScript.lifetime = weapon.BulletLifetime;
             bulletScript.pierceCount = weapon.PierceCount;
         }
         recoil = weapon.Damage * recoilMult * weapon.BulletCount;
