@@ -376,16 +376,20 @@ MonoBehaviour:
   emptyWall: {fileID: 11400000, guid: b06841d4545d67748b1c061d9cc61407, type: 2}
   mapWidth: 60
   mapHeight: 60
-  minWalkers: 3
-  maxWalkers: 5
+  minWalkers: 1
+  maxWalkers: 2
   tileCount: 0
-  fillPercentage: 0.1
-  waitTime: 0.01
+  fillPercentage: 0.07
+  waitTime: 0
   chestPrefab: {fileID: 7953422861914154769, guid: 1ffbadbb891a8a647a85af77d3046371, type: 3}
   exitPrefab: {fileID: 5356329310252368683, guid: d6b1aa6155326cd43b4836d9dab796b3, type: 3}
   enemyPack: {fileID: 11400000, guid: ff5dd5be9f262604d9898b40fa54e2ca, type: 2}
   roomPower: 0
   roomMaxPower: 80
+  propPrefabs:
+  - {fileID: 1082543468437283120, guid: b607d41fbfc4879409362acea127637c, type: 3}
+  minProps: 6
+  maxProps: 12
 --- !u!1 &8500687887532418527
 GameObject:
   m_ObjectHideFlags: 0

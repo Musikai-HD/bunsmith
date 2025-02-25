@@ -11,8 +11,8 @@ public abstract class Damageable : MonoBehaviour
 
     protected virtual void Awake()
     {
-        normal = Resources.Load<Material>("Materials/Normal");
-        white = Resources.Load<Material>("Materials/White");
+        normal = Instantiate(Resources.Load<Material>("Materials/Normal"));
+        white = Instantiate(Resources.Load<Material>("Materials/White"));
     }
 
     protected virtual void Start()

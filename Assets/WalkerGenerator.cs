@@ -36,6 +36,8 @@ public class WalkerGenerator : MonoBehaviour
     public GameObject chestPrefab, exitPrefab;
     public EnemyPack enemyPack;
     public int roomPower, roomMaxPower;
+    public GameObject[] propPrefabs;
+    public int minProps, maxProps;
 
     void Start()
     {
@@ -113,6 +115,11 @@ public class WalkerGenerator : MonoBehaviour
         }
     }
 
+    Vector3 AddTileVariance()
+    {
+        return new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f), 0f);
+    }
+
     IEnumerator CreateFloors()
     {
         while ((float)tileCount / (float)gridHandler.Length < fillPercentage)
@@ -120,15 +127,20 @@ public class WalkerGenerator : MonoBehaviour
             bool hasCreatedFloor = false;
             foreach (WalkerObject curWalker in walkers)
             {
-                Vector3Int curPos = new Vector3Int((int)curWalker.position.x, (int)curWalker.position.y, 0);
-
-                if (gridHandler[curPos.x, curPos.y] != Grid.FLOOR)
+                for (int i = -1; i < 1; i++)
                 {
-                    floorMap.SetTile(curPos, floor);
-                    tileCount++;
-                    gridHandler[curPos.x, curPos.y] = Grid.FLOOR;
-                    wallMap.SetTile(curPos, null);
-                    hasCreatedFloor = true;
+                    for (int o = 0; o < 2; o++)
+                    {
+                        Vector3Int curPos = new Vector3Int((int)curWalker.position.x + i, (int)curWalker.position.y + o, 0);
+                        if (gridHandler[curPos.x, curPos.y] != Grid.FLOOR)
+                        {
+                            floorMap.SetTile(curPos, floor);
+                            tileCount++;
+                            gridHandler[curPos.x, curPos.y] = Grid.FLOOR;
+                            wallMap.SetTile(curPos, null);
+                            hasCreatedFloor = true;
+                        }
+                    }
                 }
             }
 
@@ -211,89 +223,6 @@ public class WalkerGenerator : MonoBehaviour
                 wallMap.SetTile(new Vector3Int(x, y, 0), wall);
             }
         }   
-        /*int[] gridLength = new int[2];
-        gridLength[0] = gridHandler.GetLength(0);
-        gridLength[1] = gridHandler.GetLength(1);
-        for (int x = 1; x < gridLength[0] - 1; x++)
-        {
-            for (int y = 1; y < gridLength[1] - 1; y++)
-            {
-                if (gridHandler[x, y] == Grid.FLOOR)
-                {
-                    bool hasCreatedWall = false;
-
-                    if (gridHandler[x + 1, y] == Grid.EMPTY)
-                    {
-                        wallMap.SetTile(new Vector3Int(x + 1, y, 0), wall);
-                        gridHandler[x + 1, y] = Grid.WALL;
-                        hasCreatedWall = true;
-                    }
-                    if (gridHandler[x - 1, y] == Grid.EMPTY)
-                    {
-                        wallMap.SetTile(new Vector3Int(x - 1, y, 0), wall);
-                        gridHandler[x - 1, y] = Grid.WALL;
-                        hasCreatedWall = true;
-                    }
-                    if (gridHandler[x, y + 1] == Grid.EMPTY)
-                    {
-                        wallMap.SetTile(new Vector3Int(x, y + 1, 0), wall);
-                        gridHandler[x, y + 1] = Grid.WALL;
-                        hasCreatedWall = true;
-                    }
-                    if (gridHandler[x, y - 1] == Grid.EMPTY)
-                    {
-                        wallMap.SetTile(new Vector3Int(x, y - 1, 0), wall);
-                        gridHandler[x, y - 1] = Grid.WALL;
-                        hasCreatedWall = true;
-                    }
-
-                    if (hasCreatedWall)
-                    {
-                        yield return new WaitForSeconds(waitTime);
-                    }
-                }
-            }
-        }
-        for (int x = 1; x < gridLength[0] - 1; x++)
-        {
-            for (int y = 1; y < gridLength[1] - 1; y++)
-            {
-                if (gridHandler[x, y] == Grid.WALL)
-                {
-                    bool hasCreatedWall = false;
-
-                    if (gridHandler[x + 1, y] == Grid.EMPTY)
-                    {
-                        wallMap.SetTile(new Vector3Int(x + 1, y, 0), wall);
-                        gridHandler[x + 1, y] = Grid.WALL;
-                        hasCreatedWall = true;
-                    }
-                    if (gridHandler[x - 1, y] == Grid.EMPTY)
-                    {
-                        wallMap.SetTile(new Vector3Int(x - 1, y, 0), wall);
-                        gridHandler[x - 1, y] = Grid.WALL;
-                        hasCreatedWall = true;
-                    }
-                    if (gridHandler[x, y + 1] == Grid.EMPTY)
-                    {
-                        wallMap.SetTile(new Vector3Int(x, y + 1, 0), wall);
-                        gridHandler[x, y + 1] = Grid.WALL;
-                        hasCreatedWall = true;
-                    }
-                    if (gridHandler[x, y - 1] == Grid.EMPTY)
-                    {
-                        wallMap.SetTile(new Vector3Int(x, y - 1, 0), wall);
-                        gridHandler[x, y - 1] = Grid.WALL;
-                        hasCreatedWall = true;
-                    }
-
-                    if (hasCreatedWall)
-                    {
-                        yield return new WaitForSeconds(waitTime);
-                    }
-                }
-            }
-        }*/
     }
 
     public void FinishGeneration()
@@ -312,6 +241,7 @@ public class WalkerGenerator : MonoBehaviour
         }
 
         if (enemyPack != null) PopulateWithEnemies(enemyPack);
+        PopulateWithProps();
     }
     
     Vector3 GetRandomTilePos(Tilemap map)
@@ -337,6 +267,17 @@ public class WalkerGenerator : MonoBehaviour
         return availablePlaces[randomChoice] + new Vector3(0.5f, 0.5f, 0f);
     }
 
+    void PopulateWithProps()
+    {
+        if (maxProps == 0) return;
+        int propAmount = Random.Range(minProps, maxProps);
+        for (int i = 0; i < propAmount; i++)
+        {
+            GameObject selectedProp = propPrefabs[Random.Range(0, propPrefabs.Length - 1)];
+            Instantiate(selectedProp, GetRandomTilePos(floorMap) + AddTileVariance(), Quaternion.identity);
+        }
+    }
+
     void PopulateWithEnemies(EnemyPack ep)
     {
         ep.enemyPack.Sort();
@@ -353,7 +294,7 @@ public class WalkerGenerator : MonoBehaviour
             }
             EnemyContainer randomEnemy = PickRandomEnemy(possibleEnemies);
             GameObject enemyPrefabToPlace = randomEnemy.enemyPrefab;
-            Instantiate(enemyPrefabToPlace, GetRandomTilePos(floorMap), Quaternion.identity);
+            Instantiate(enemyPrefabToPlace, GetRandomTilePos(floorMap) + AddTileVariance(), Quaternion.identity);
             roomPower += randomEnemy.enemyPower;
         }
     }

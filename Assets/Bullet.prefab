@@ -206,7 +206,7 @@ MonoBehaviour:
   hb:
     hittableLayers:
       serializedVersion: 2
-      m_Bits: 72
+      m_Bits: 1096
     hit: {fileID: 8300000, guid: ea21fb5fd90e98d41bf6a5884134e739, type: 3}
     blacklist: []
     canHit: 1

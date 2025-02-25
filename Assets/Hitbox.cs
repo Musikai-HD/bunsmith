@@ -20,9 +20,11 @@ public class Hitbox
                 dam.Damage(hitInfo.damage);
                 AudioManager.instance.Play(hit);
                 blacklist.Add(col.gameObject);
+                Debug.Log("collided with damageable " + col.gameObject.name);
             }
             if (!dam)
             {
+                Debug.Log("no damageable found");
                 return 0;
             }
             return 1;
